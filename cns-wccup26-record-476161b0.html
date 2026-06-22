@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界杯 · 赛事信息与站点介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fce4b8 0%, #f5c27b 45%, #e8a65d 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1.2rem;
+            line-height: 1.6;
+            color: #2d241b;
+        }
+
+        .magazine {
+            max-width: 880px;
+            width: 100%;
+            background: rgba(255, 250, 240, 0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 48px 48px 36px 36px;
+            box-shadow: 0 20px 40px -10px rgba(110, 60, 20, 0.35), 0 8px 20px rgba(0,0,0,0.05);
+            padding: 2.6rem 2.2rem 2.8rem;
+            transition: all 0.2s ease;
+        }
+
+        /* 首页横幅 — 杂志刊头 */
+        .hero {
+            text-align: center;
+            padding-bottom: 1.8rem;
+            border-bottom: 2px solid #dba87a;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #6b3c1c;
+            text-shadow: 0 2px 6px rgba(200, 120, 40, 0.2);
+            margin-bottom: 0.4rem;
+        }
+
+        .hero .subline {
+            font-size: 1.05rem;
+            color: #805b3a;
+            background: #f1ddd0;
+            display: inline-block;
+            padding: 0.25rem 1.6rem;
+            border-radius: 40px;
+            letter-spacing: 1px;
+            font-weight: 430;
+        }
+
+        /* 背景说明 —— 站点介绍与可信说明 */
+        .background-note {
+            background: #f9eee4;
+            padding: 1.2rem 1.6rem;
+            border-radius: 36px;
+            margin-bottom: 2rem;
+            box-shadow: inset 0 1px 4px rgba(255, 235, 200, 0.8);
+        }
+
+        .background-note p {
+            font-size: 0.98rem;
+            color: #3e2e21;
+        }
+
+        .background-note strong {
+            color: #864d28;
+        }
+
+        /* 三段自然介绍卡片 */
+        .intro-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 32px;
+            padding: 1.6rem 1.8rem;
+            box-shadow: 0 4px 14px rgba(170, 100, 40, 0.12), 0 1px 4px rgba(0,0,0,0.02);
+            transition: transform 0.15s, box-shadow 0.2s;
+            border-left: 6px solid #dba87a;
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 22px rgba(150, 80, 30, 0.15);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 590;
+            color: #62371d;
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card p {
+            font-size: 0.97rem;
+            color: #2f251e;
+            margin-bottom: 0.2rem;
+        }
+
+        .card .highlight-link {
+            display: inline-block;
+            background: #f6e2d3;
+            color: #4f2c14;
+            padding: 0.2rem 1rem;
+            border-radius: 60px;
+            font-weight: 470;
+            font-size: 0.96rem;
+            margin-top: 0.3rem;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .card .highlight-link a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .card .highlight-link:hover {
+            background: #eacbbc;
+            color: #3d210f;
+        }
+
+        /* 页尾访问提示 — 杂志脚注感 */
+        .footer-note {
+            margin-top: 1.8rem;
+            padding-top: 1.8rem;
+            border-top: 2px dashed #cd9f7a;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #513b2c;
+        }
+
+        .footer-note .inline-link {
+            background: #dba87a;
+            padding: 0.2rem 1.2rem;
+            border-radius: 60px;
+            color: #231810;
+            font-weight: 560;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.4rem 0.2rem 0.2rem;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 6px rgba(150, 70, 20, 0.15);
+        }
+
+        .footer-note .inline-link:hover {
+            background: #c8885e;
+            box-shadow: 0 4px 12px rgba(130, 60, 15, 0.2);
+        }
+
+        .footer-note p {
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-mini {
+            margin-top: 1.2rem;
+            background: #f7ede4;
+            border-radius: 40px;
+            padding: 0.8rem 1.4rem;
+            display: inline-block;
+        }
+
+        .faq-mini summary {
+            font-weight: 540;
+            cursor: pointer;
+            color: #633f27;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .faq-mini details p {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: #382b21;
+            max-width: 480px;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 620px) {
+            .magazine {
+                padding: 1.8rem 1.2rem;
+                border-radius: 32px;
+            }
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            .card {
+                padding: 1.2rem 1.2rem;
+                border-left-width: 4px;
+            }
+            .background-note {
+                padding: 0.9rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            body {
+                padding: 1rem 0.6rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero .subline {
+                font-size: 0.85rem;
+                padding: 0.15rem 1rem;
+            }
+            .footer-note .inline-link {
+                font-size: 0.9rem;
+                padding: 0.1rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="magazine">
+
+        <!-- 首页横幅 -->
+        <header class="hero">
+            <h1>⚽ 世界杯·专题</h1>
+            <div class="subline">赛事信息 · 站点导读 · 可信说明</div>
+        </header>
+
+        <!-- 背景说明 —— 站点介绍与可信说明 -->
+        <div class="background-note">
+            <p><strong>关于本站</strong> — 一个围绕世界杯赛事与足球文化搭建的信息聚合站点。内容经多方核对，侧重基础数据与背景梳理，帮助爱好者快速了解赛事脉络。站内所有引用均标注来源，不编造赛果，不渲染争议。我们更愿意做一扇安静的窗，让您看到真实的世界杯轮廓。</p>
+        </div>
+
+        <!-- 三段自然介绍 -->
+        <div class="intro-grid">
+
+            <div class="card">
+                <h3>📋 赛事脉络 · 从历史到当下</h3>
+                <p>世界杯的演变超过九十年，从最初的十三支参赛队到如今覆盖六大洲的预选赛体系，规则与格局几经更迭。本站整理了历届决赛圈数据、经典对阵、主办国变迁以及标志性规则修订（如小组赛阶段引入、红黄牌制度、VAR辅助等），以时间线方式呈现，方便您按图索骥。</p>
+                <p>同时，我们也收录了部分文化侧写：主办城市体育场、吉祥物与主题曲沿革，这些细节同样是世界杯记忆的一部分。</p>
+                <div class="highlight-link">
+                    <a href="https://cns-wccup26.com">世界杯</a> · 赛事档案
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🌐 信息可信 · 整理与核对</h3>
+                <p>网络上的赛事信息零散且时常矛盾，本站尝试做一次系统梳理。每一条参赛记录、比分、射手数据都对比了国际足联官方档案、多国媒体简报及专业统计网站。对于存疑的历史场次（例如早期部分赛制变更），会在页面内以注释形式说明，不刻意遮掩模糊地带。</p>
+                <p>我们相信，克制而诚实的信息整理，比夸张的标题更有价值。这也是站点值得您驻足的缘由之一。</p>
+                <div class="highlight-link">
+                    <a href="https://cns-wccup26.com">世界杯</a> · 资料索引
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🧭 使用场景 · 适合哪些朋友</h3>
+                <p>如果您是轻度爱好者，想快速回顾某届赛事的基本面貌；如果是学生或媒体从业者，需要核对基础事实；或者只是对足球文化怀有好奇，想了解世界杯如何从乌拉圭的蒙得维的亚走向全球——这里的内容都能提供一些安静的线索。</p>
+                <p>没有直播链接，没有竞猜引导，只有整理好的文字与数据。您可以慢慢翻阅，也可以精准检索。</p>
+                <div class="highlight-link">
+                    <a href="https://cns-wccup26.com">世界杯</a> · 内容概览
+                </div>
+            </div>
+        </div>
+
+        <!-- 页尾访问提示 + FAQ摘要 -->
+        <div class="footer-note">
+            <p>—— 翻开这本杂志式的站点，慢慢了解关于世界杯的一切 ——</p>
+            <p style="margin-top: 0.6rem;">
+                <a href="https://cns-wccup26.com" class="inline-link">世界杯</a>
+            </p>
+            <details class="faq-mini">
+                <summary>📌 常见问题 · 摘要</summary>
+                <p>▪ 本站数据更新到什么时间？—— 覆盖至最近一届世界杯决赛，并保留后续预选赛框架说明。<br>
+                ▪ 是否包含女足世界杯？—— 以男足世界杯为主线，部分页面附有女足赛事对照索引。<br>
+                ▪ 内容会定期修订吗？—— 若有官方修正或新发现的历史资料，会及时更新并注明改动。<br>
+                ▪ 如何引用本站信息？—— 建议同时比对国际足联官网，本站可作为辅助参考。</p>
+            </details>
+        </div>
+
+    </div>
+</body>
+</html>
